@@ -1,0 +1,293 @@
+{
+  "intents": [
+    {
+      "intent": "left",
+      "examples": [
+        {
+          "text": "please turn left"
+        },
+        {
+          "text": "can you turn left"
+        },
+        {
+          "text": "turn left"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "right",
+      "examples": [
+        {
+          "text": "can you turn right"
+        },
+        {
+          "text": "please turn right"
+        },
+        {
+          "text": "turn right"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "back",
+      "examples": [
+        {
+          "text": "move backwards"
+        },
+        {
+          "text": "backwards"
+        },
+        {
+          "text": "please move backwards"
+        },
+        {
+          "text": "back"
+        },
+        {
+          "text": "please move back"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "welcome",
+      "examples": [
+        {
+          "text": "hi"
+        },
+        {
+          "text": "good afternoon"
+        },
+        {
+          "text": "good evening"
+        },
+        {
+          "text": "hi there"
+        },
+        {
+          "text": "hello"
+        }
+      ],
+      "description": "gratings "
+    },
+    {
+      "intent": "bye",
+      "examples": [
+        {
+          "text": "thank you"
+        },
+        {
+          "text": "bye"
+        },
+        {
+          "text": "good bye"
+        },
+        {
+          "text": "see you"
+        },
+        {
+          "text": "thanks"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "forwards",
+      "examples": [
+        {
+          "text": "move forwards"
+        },
+        {
+          "text": "go"
+        },
+        {
+          "text": "please move forwards"
+        },
+        {
+          "text": "can you move forwards"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "questions",
+      "examples": [
+        {
+          "text": "what are you doing?"
+        },
+        {
+          "text": "who are you doing?"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "end of the chat",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "thank you, good bye"
+              },
+              {
+                "text": "see you soon"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#bye",
+      "dialog_node": "node_2_1594834939339",
+      "previous_sibling": "Anything else"
+    },
+    {
+      "type": "standard",
+      "title": "turn right",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I`m turning to the right."
+              },
+              {
+                "text": "turn right"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#right",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_1_1594898822429",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "turn to the left",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I`m turning to the left ."
+              },
+              {
+                "text": "turning left"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#left",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_1_1594898822429",
+      "previous_sibling": "node_4_1594898955677"
+    },
+    {
+      "type": "standard",
+      "title": "forwards",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I`m moving forwards."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#forwards",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_5_1594898902508",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "backwards",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I`m moving backwards"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#back",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_4_1594898955677",
+      "previous_sibling": "node_5_1594898902508"
+    },
+    {
+      "type": "standard",
+      "title": "welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hi, I`m S-M Robot . how can i help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "My first skill",
+  "language": "en",
+  "description": ""
+}
